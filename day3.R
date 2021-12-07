@@ -18,8 +18,23 @@ for(i in seq(ncol(bits))) {
   j <- if(tbl[1] == tbl[2]) 1 else which.max(tbl) - 1
   
   oxygen <- oxygen[ oxygen[,i] == j , ]
+  print(oxygen)
 }
 oxygen
+
+
+
+o_rec <- function(data, ix) {
+  if(nrow(data) == 1) return(data)
+  
+  tbl <- table(data[,ix])
+  j <- if(tbl[1] == tbl[2]) 1 else which.max(tbl) - 1
+  
+  o_rec(data[ data[,ix] == j , , drop=FALSE], ix + 1)
+}
+
+
+o_rec(bits, 1)
 
 co2 <- bits
 for(i in seq(ncol(bits))) {
