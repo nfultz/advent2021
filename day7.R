@@ -9,7 +9,13 @@ sum(abs(start - median(start)))
 
 m <- mean(start)
 
+cost<- function(start, x) {
+  abs(start - x) * (abs(start - x) + 1) / 2
+}
+
+cost(350, 352)
+
 for(i in seq(floor(m-10), ceiling(m+10))) 
-  cat(i, "\t", sum((start - i)*(start - i + 1)/2), '\n')
+  cat(i, "\t", sum(cost(start, i)), '\n')
 
   
